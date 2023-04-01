@@ -14,7 +14,7 @@ import argparse
 
 import config
 from ctpn_model import CTPN_Model, RPN_CLS_Loss, RPN_REGR_Loss
-from data import VOCDataset
+from data.dataset import VOCDataset, ICDARDataset
 
 
 random_seed = 2019
@@ -54,7 +54,7 @@ if __name__ == '__main__':
     if os.path.exists(checkpoints_weight):
         pretrained = False
 
-    dataset = VOCDataset(args['image_dir'], args['labels_dir'])
+    dataset = ICDARDataset(args['image_dir'], args['labels_dir'])
     dataloader = DataLoader(dataset, batch_size=1, shuffle=True, num_workers=args['num_workers'])
     model = CTPN_Model()
     model.to(device)
